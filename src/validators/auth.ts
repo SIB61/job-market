@@ -1,5 +1,6 @@
 
 import requestValidator from '@/utils/request-validator'
+import responseValidator from '@/utils/response-validator'
 import z from 'zod'
 
 export const validateRegistrationRequest = requestValidator({
@@ -27,13 +28,9 @@ export const validateLoginRequest = requestValidator({
     })
 })
 
-export const validateLoginResponse = (result:any) => {
- return z.object({
-    accessToken: z.string(),
-    refreshToken: z.string()
- }).parse(result)
-}
-
-export const validateRegistrationResponse = (result:any) => {
-    return z.void().nullish().parse(result)
-}
+export const validateLoginResponse = responseValidator(
+    z.object({
+        accessToken: z.string(),
+        refreshToken: z.string()
+    })
+)
