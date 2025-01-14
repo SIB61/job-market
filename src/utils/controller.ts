@@ -1,17 +1,21 @@
 import ApiResponseType from "@/enums/api-response-type"
 import { Request, Response } from "express"
 import { HttpError } from "./http-error"
+import { requestResponseValidator, RequestResponseValidator } from "./request-response-validator"
 
-export const controller = (handler: (req: Request, res: Response) => Promise<any>) => {
+export const controller = (handler: (req: Request, res: Response) => Promise<any>,validator: RequestResponseValidator = requestResponseValidator()) => {
   return async (req: Request, res: Response) => {
     try {
+      validator.validateRequest(req)
       const result = await handler(req, res)
-      return res.json({
+      const response = {
         type: ApiResponseType.RESULT,
         error: null,
         statusCode: res.statusCode,
         result: result
-      })
+      }
+      validator.validateResponse(response)
+      return res.json(response)
     } catch (err) {
 
       let error: HttpError

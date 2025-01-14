@@ -27,6 +27,13 @@ export const validateLoginRequest = requestValidator({
     })
 })
 
-export const validateLoginResponse = (result) => {
+export const validateLoginResponse = (result:any) => {
+ return z.object({
+    accessToken: z.string(),
+    refreshToken: z.string()
+ }).parse(result)
+}
 
+export const validateRegistrationResponse = (result:any) => {
+    return z.void().nullish().parse(result)
 }
