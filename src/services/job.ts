@@ -1,23 +1,18 @@
 import JobModel from "@/models/job";
-import { getUserFromReq } from "@/utils/controller";
+import { Job } from "@/types/job";
+import { findPaginatedData } from "@/utils/db";
 import { HttpError } from "@/utils/http-error";
-import { Request, Response } from "express";
 
-export const createJob = async (req: Request, res: Response) => {
-  const { id: employerId } = getUserFromReq(req)!;
-  const job = req.body;
+export const createJob = async ({ job, employerId }: { job: Job, employerId: string }) => {
   job.employerId = employerId;
   const newJob = await JobModel.create(job);
   return newJob;
 };
 
-export const updateJob = async (req: Request, res: Response) => {
-  const { id: employerId } = getUserFromReq(req)!;
-  const { jobId } = req.query;
-  const updatedJobDetails = req.body;
+export const updateJob = async ({ jobUpdates, employerId, jobId }: { jobUpdates: Job, employerId: string, jobId: string }) => {
   const updatedJob = await JobModel.findOneAndUpdate(
     { _id: jobId, employerId: employerId },
-    updatedJobDetails,
+    jobUpdates,
     { new: true },
   );
   if (!updatedJob) {
@@ -26,35 +21,49 @@ export const updateJob = async (req: Request, res: Response) => {
   return updatedJob;
 };
 
-export const deleteJob = async (req: Request, res: Response) => {
-  const { id: employerId } = getUserFromReq(req)!;
-  const { jobId } = req.query;
-  const deletedJob = await JobModel.deleteOne({
+export const deleteJob = async ({ employerId, jobId }: { employerId: string, jobId: string }) => {
+  const result = await JobModel.deleteOne({
     _id: jobId,
     employerId: employerId,
   });
-  if (!deletedJob.deletedCount) {
+  if (!result.deletedCount) {
     throw new HttpError({ message: "Cannot delete this job", statusCode: 404 });
   }
 };
 
-export const getJobList = async (props:{employerId?:string, title?:}) => {
-  const query: { employerId?: string; title?: any } = {};
-  const pageSize = Number(req.query.page_size) || Number.MAX_SAFE_INTEGER;
-  const pageNumber = Number(req.query.page_number) || 1;
+export const getJobDetails = async (props: { jobId: string }) => {
+  return await JobModel.findById(props.jobId)
+}
 
-  if (typeof req.query.employerId === "string") {
-    query.employerId = req.query.employerId;
+export const searchJobs = async (props: { title?: string, location?: string, employerId?: string, maxSalary?: number, minSalary?: number, pageNumber: number, pageSize: number }) => {
+  const query: any = {}
+  if (props.title) {
+    query.title = { $regex: props.title, $options: 'i' }
   }
-
-  if (typeof req.query.title === "string") {
-    query.title = { $text: { $search: req.query.title } };
+  if (props.location) {
+    query.location = { $regex: props.location, $options: 'i' }
   }
+  if (props.maxSalary) {
+    query['salary.max'] = {
+      $lte: props.maxSalary
+    }
+  }
+  if (props.minSalary) {
+    query['salary.max'] = {
+      $gte: props.minSalary,
+      ...query['salary.max']
+    }
+  }
+  if (props.employerId) {
+    query.employerId = props.employerId
+  }
+  const jobs = findPaginatedData(JobModel, query, props.pageNumber, props.pageSize)
+  return jobs
+}
 
-  const jobs = await JobModel.find(query)
-    .skip((pageNumber - 1) * pageSize)
-    .limit(pageSize);
-
-  return jobs;
-};
-
+export const toggleJobActivation = async (props: { jobId: string, employerId: string, isActive: boolean }) => {
+  const update = await JobModel.updateOne({ _id: props.jobId, employerId: props.employerId }, { isActive: props.isActive })
+  if (update.matchedCount) {
+    throw new HttpError({ statusCode: 404, message: "Job was not found" })
+  }
+}

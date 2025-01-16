@@ -1,11 +1,11 @@
 import { handleLoginRequest, handleRegistrationRequest } from "@/controllers/auth";
-import { controller } from "@/utils/controller";
+import { authGuard } from "@/guards/auth-guard";
 import { Router } from "express";
 
 // /api/auth
 const authRouter = Router()
 
-authRouter.post('/register', controller(handleRegistrationRequest))
-authRouter.post("/login",controller(handleLoginRequest))
+authRouter.post('/register', handleRegistrationRequest)
+authRouter.post("/login", handleLoginRequest)
 
 export default authRouter

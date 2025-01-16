@@ -1,23 +1,28 @@
 import {
   handleCreateJob,
   handleDeleteJob,
+  handleGetJobDetails,
+  handleJobSearch,
   handleUpdateJob,
 } from "@/controllers/job";
-import { controller } from "@/utils/controller";
+import { authGuard } from "@/guards/auth-guard";
 import { Router } from "express";
 
 const jobRouter = Router();
 
-jobRouter.get("/");
+jobRouter.post("/", authGuard(), handleCreateJob);
 
-jobRouter.post("/", controller(handleCreateJob, { authenticated: true }));
+jobRouter.put("/:jobId", authGuard(), handleUpdateJob);
 
-jobRouter.put("/:jobId", controller(handleUpdateJob, { authenticated: true }));
+jobRouter.get("/:jobId", authGuard(), handleGetJobDetails)
 
 jobRouter.delete(
   "/:jobId",
-  controller(handleDeleteJob, { authenticated: true }),
+  authGuard(),
+  handleDeleteJob
 );
+
+jobRouter.post("/search", handleJobSearch)
 
 export default jobRouter;
 

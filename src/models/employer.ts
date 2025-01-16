@@ -18,7 +18,7 @@ const EmployerSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-})
+}, { timestamps: true })
 
 const EmployerModel = mongoose.models['employers'] ?? mongoose.model('employers', EmployerSchema)
 

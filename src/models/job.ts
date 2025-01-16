@@ -1,4 +1,5 @@
 import mongoose, { mongo } from "mongoose";
+import { string } from "zod";
 
 const JobSchema = new mongoose.Schema({
   title: {
@@ -24,12 +25,18 @@ const JobSchema = new mongoose.Schema({
     },
   },
   employerId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true,
   },
-});
-
-JobSchema.index({ title: "text" });
+  applicationCount: {
+    type: Number,
+    default: 0
+  },
+  isActive: {
+    type: Boolean,
+    default: false
+  }
+}, { timestamps: true });
 
 const JobModel = mongoose.models["jobs"] ?? mongoose.model("jobs", JobSchema);
 

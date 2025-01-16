@@ -1,59 +1,47 @@
-import JobModel from "@/models/job";
-import { getUserFromReq } from "@/utils/controller";
-import { HttpError } from "@/utils/http-error";
+import { createJob, deleteJob, getJobDetails, searchJobs, toggleJobActivation, updateJob } from "@/services/job";
+import { controller } from "@/utils/controller";
+import { HttpResponse } from "@/utils/http-response";
+import { validateJobActivationRequest, validateJobCreateRequest, validateJobSearchRequest, validateJobUpdateRequest } from "@/validators/job";
 import { Request, Response } from "express";
 
-export const handleCreateJob = async (req: Request, res: Response) => {
-  const { id: employerId } = getUserFromReq(req)!;
+export const handleCreateJob = controller(async (req: Request, res: Response) => {
+  validateJobCreateRequest(req)
+  const { id: employerId } = req.user!
   const job = req.body;
-  job.employerId = employerId;
-  const newJob = await JobModel.create(job);
-  return newJob;
-};
+  const result = await createJob({ job, employerId })
+  return new HttpResponse({ statusCode: 201, result })
+});
 
-export const handleUpdateJob = async (req: Request, res: Response) => {
-  const { id: employerId } = getUserFromReq(req)!;
-  const { jobId } = req.query;
-  const updatedJobDetails = req.body;
-  const updatedJob = await JobModel.findOneAndUpdate(
-    { _id: jobId, employerId: employerId },
-    updatedJobDetails,
-    { new: true },
-  );
-  if (!updatedJob) {
-    throw new HttpError({ message: "Cannot update this job", statusCode: 404 });
-  }
-  return updatedJob;
-};
+export const handleUpdateJob = controller(async (req: Request) => {
+  validateJobUpdateRequest(req)
+  const { id: employerId } = req.user!
+  const { jobId } = req.params as { jobId: string };
+  const jobUpdates = req.body;
+  const result = await updateJob({ jobUpdates, employerId, jobId })
+  return result;
+});
 
-export const handleDeleteJob = async (req: Request, res: Response) => {
-  const { id: employerId } = getUserFromReq(req)!;
-  const { jobId } = req.query;
-  const deletedJob = await JobModel.deleteOne({
-    _id: jobId,
-    employerId: employerId,
-  });
-  if (!deletedJob.deletedCount) {
-    throw new HttpError({ message: "Cannot delete this job", statusCode: 404 });
-  }
-};
+export const handleDeleteJob = controller(async (req: Request) => {
+  const { id: employerId } = req.user!;
+  const { jobId } = req.params as { jobId: string };
+  await deleteJob({ employerId, jobId })
+});
 
-export const handleGetJobList = async (req: Request, res: Response) => {
-  const query: { employerId?: string; title?: any } = {};
-  const pageSize = Number(req.query.page_size) || Number.MAX_SAFE_INTEGER;
-  const pageNumber = Number(req.query.page_number) || 1;
+export const handleGetJobDetails = controller(async (req: Request) => {
+  const jobId = req.params.jobId as string
+  return getJobDetails({ jobId })
+})
 
-  if (typeof req.query.employerId === "string") {
-    query.employerId = req.query.employerId;
-  }
+export const handleJobSearch = controller(async (req: Request) => {
+  validateJobSearchRequest(req)
+  const result = await searchJobs(req.body)
+  return result
+})
 
-  if (typeof req.query.title === "string") {
-    query.title = { $text: { $search: req.query.title } };
-  }
-
-  const jobs = await JobModel.find(query)
-    .skip((pageNumber - 1) * pageSize)
-    .limit(pageSize);
-
-  return jobs;
-};
+export const handleJobApplicationDeactivation = controller(async (req: Request) => {
+  validateJobActivationRequest(req)
+  const jobId = req.params.jobId as string
+  const isActive = req.body.isActive
+  const employerId = req.user!.id
+  await toggleJobActivation({ jobId, employerId, isActive })
+})

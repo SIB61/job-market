@@ -1,12 +1,11 @@
 import { Request } from "express";
 import { z, ZodError } from 'zod'
 import { HttpError } from "./http-error";
-import ApiResponseType from "@/enums/api-response-type";
 
 const requestValidator = ({
     body,
-    query
-}: { body?: z.Schema, query?: z.Schema }) => {
+    query,
+}: { body?: z.Schema, query?: z.Schema, auth?: boolean }) => {
     return (req: Request) => {
         try {
             if (body) {
