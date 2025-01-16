@@ -1,0 +1,39 @@
+# Node.js specific
+node_modules/
+npm-debug.log
+
+# Editor files
+.vscode/
+*.code-workspace
+*.suo
+*.user
+*.sln
+*.vspscc
+*.pdb
+*.suo
+*.user
+*.sln
+*.vspscc
+*.pdb
+*.userprefs
+*.tmp
+*.hg
+*.git
+*.svn
+
+# macOS
+.DS_Store
+
+# Operating system generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# Log files
+*.log
+*.err
+
+# Compiled JS files 
+dist/
+build/
