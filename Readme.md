@@ -47,6 +47,7 @@ postman collection is given in the projects postman/collection.json file
 ### Tech stack:
 
 - NodeJs
+- TypeScript
 - Express
 - MongoDb
 - Redis
