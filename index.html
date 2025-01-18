@@ -1,0 +1,2053 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>job-market</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.configure({
+            tabReplace: '    ',
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <style>body {
+    position: relative;
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+h1, h2, h3, h4 {
+    color: #2b2b2b;
+}
+
+h2:after {
+    content: ' ';
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    display: none;
+    position: absolute;
+    margin-left: 8px;
+}
+
+h1:hover a, h2:hover a, h3:hover a, h4:hover a, h5:hover a, h6:hover a {
+    color: #a5a5a5;
+    display: initial;
+}
+
+.nav.nav-tabs > li > a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tab-content {
+    padding-top: 8px;
+}
+
+.table {
+    margin-bottom: 8px;
+}
+
+pre {
+    border-radius: 0px;
+    border: none;
+}
+
+pre code {
+    margin: -9.5px;
+}
+
+.request {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.response-text-sample {
+    padding: 0px !important;
+}
+
+.response-text-sample pre {
+    margin-bottom: 0px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #2b2b2b;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper ul {
+    width: 250px;
+}
+
+#sidebar-wrapper ul li {
+    margin-right: 10px;
+}
+
+#sidebar-wrapper ul li a:hover {
+    background: inherit;
+    text-decoration: none;
+}
+
+#sidebar-wrapper ul li a {
+    display: block;
+    color: #ECF0F1;
+    padding: 6px 15px;
+}
+
+#sidebar-wrapper ul li ul {
+    padding-left: 25px;
+}
+
+#sidebar-wrapper ul li ul li a {
+    padding: 1px 0px;
+}
+
+#sidebar-wrapper ul li a:hover,
+#sidebar-wrapper ul li a:focus {
+    color: #e0c46c;
+    border-right: solid 1px #e0c46c;
+}
+
+#sidebar-wrapper ul li.active > a {
+    color: #e0c46c;
+    border-right: solid 3px #e0c46c;
+}
+
+#sidebar-wrapper ul li:not(.active) ul {
+    display: none;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px 15px 15px 250px;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".scrollspy">
+<div id="sidebar-wrapper">
+    <div class="scrollspy">
+    <ul id="main-menu" data-spy="affix" class="nav">
+        <li>
+            <a href="#doc-general-notes">General notes</a>
+        </li>
+        
+        <li>
+            <a href="#doc-api-detail">API detail</a>
+        </li>
+        
+        
+        
+        <li>
+            <a href="#folder-auth">auth</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-auth-login">login</a>
+                </li>
+                
+                <li>
+                    <a href="#request-auth-register">register</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-job">job</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-job-create-a-job">create a job</a>
+                </li>
+                
+                <li>
+                    <a href="#request-job-update-a-job">update a job</a>
+                </li>
+                
+                <li>
+                    <a href="#request-job-toggle-job-application-taking">toggle job application taking</a>
+                </li>
+                
+                <li>
+                    <a href="#request-job-delete-a-job">delete a job</a>
+                </li>
+                
+                <li>
+                    <a href="#request-job-get-job-details">get job details</a>
+                </li>
+                
+                <li>
+                    <a href="#request-job-search-jobs">search jobs</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-application">application</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-application-apply-for-a-job">apply for a job</a>
+                </li>
+                
+                <li>
+                    <a href="#request-application-get-application-list-of-a-job">get application list of a job</a>
+                </li>
+                
+                <li>
+                    <a href="#request-application-get-single-application-details">get single application details</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+    </ul>
+</div>
+
+</div>
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>job-market</h1>
+
+                <h2 id="doc-general-notes">
+                    General notes
+                    <a href="#doc-general-notes"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+                
+
+                <h2 id="doc-api-detail">
+                    API detail
+                    <a href="#doc-api-detail"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-auth">
+                        auth
+                        <a href="#folder-auth"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-auth-login">
+                            login
+                            <a href="#request-auth-login"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-auth-login-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-auth-login-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-auth-login-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "email":"sabit@gmail.com",
+    "password": "Pass1234@"
+}' "{{base_url}}/api/auth/login"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-auth-login-example-http">
+                                    <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/api/auth/login HTTP/1.1
+Host: 
+
+{
+    "email":"sabit@gmail.com",
+    "password": "Pass1234@"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-auth-login-responses-c23993a0-da0f-48b6-ae25-72878e1c2e25" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-auth-login-responses-852c8ff8-37d5-463e-ae3b-d72f6853c517" data-toggle="tab">
+                                        
+                                            failed
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-auth-login-responses-c23993a0-da0f-48b6-ae25-72878e1c2e25">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>localhost:3000</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>469</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"1d5-Zzl3LjpCl0ahb7dAZBuhWVEwPUA"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Thu, 16 Jan 2025 09:33:37 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "RESULT",
+    "error": null,
+    "statusCode": 200,
+    "result": {
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ODhkMWM3ZTI4NzNhYjJhMjhjMjIwNiIsImVtYWlsIjoic2FiaXRAZ21haWwuY29tIiwiaWF0IjoxNzM3MDIwMDE3LCJleHAiOjE3MzcwNDE2MTd9.D5gDG-dmKLMHwdWM5Ss9xPSUh-rBDokXDdcoHW9Ae3I",
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ODhkMWM3ZTI4NzNhYjJhMjhjMjIwNiIsImlhdCI6MTczNzAyMDAxNywiZXhwIjoxNzM3ODg0MDE3fQ.ejneCjuMAKnucW9TATOoEYOwEwXHRgITONTsFFhJF18"
+    }
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-auth-login-responses-852c8ff8-37d5-463e-ae3b-d72f6853c517">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>76</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"4c-1NKaj4s/AttJtj30Pydc2mOtT7I"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 08:43:07 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "Incorrect username or password",
+    "statusCode": 404
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-auth-register">
+                            register
+                            <a href="#request-auth-register"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-auth-register-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-auth-register-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-auth-register-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "name":"sabit",
+    "email":"sabit@gmail.com",
+    "password":"Pass1234@"
+}' "{{base_url}}/api/auth/register"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-auth-register-example-http">
+                                    <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/api/auth/register HTTP/1.1
+Host: 
+
+{
+    "name":"sabit",
+    "email":"sabit@gmail.com",
+    "password":"Pass1234@"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-auth-register-responses-71dbcc31-acad-4029-ab3b-ac6a57610c69" data-toggle="tab">
+                                        
+                                            strong pass error
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-auth-register-responses-5255e0af-0a33-449b-a3ce-d449242d3af1" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-auth-register-responses-45b22c21-5326-40de-a90d-e69e74e528f7" data-toggle="tab">
+                                        
+                                            email conflict error
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-auth-register-responses-71dbcc31-acad-4029-ab3b-ac6a57610c69">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>158</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"9e-Bg7RSMecXbH65xoUn4p/pD14TUg"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 08:40:49 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+    "statusCode": 400
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-auth-register-responses-5255e0af-0a33-449b-a3ce-d449242d3af1">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>33</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"21-WUJWpVdPxtm4sU2C5pEMY40IhMU"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 08:41:30 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-auth-register-responses-45b22c21-5326-40de-a90d-e69e74e528f7">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>409 Conflict</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>79</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"4f-eQhf2XG7V5HAa9pBwGY/noiru0c"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 08:42:07 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "This email is already registered.",
+    "statusCode": 409
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-job">
+                        job
+                        <a href="#folder-job"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-job-create-a-job">
+                            create a job
+                            <a href="#request-job-create-a-job"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-job-create-a-job-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-job-create-a-job-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-job-create-a-job-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Authorization: Bearer {{access_token}}" -d '{
+    "title": "software engineer",
+    "description": "hiring a mern stack software engineer",
+    "salary": {
+        "max": 1000,
+        "min": 1000
+    },
+    "location": "Dhaka, Bangladesh"
+}' "{{base_url}}/api/jobs"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-job-create-a-job-example-http">
+                                    <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/api/jobs HTTP/1.1
+Host: 
+Authorization: Bearer {{access_token}}
+
+{
+    "title": "software engineer",
+    "description": "hiring a mern stack software engineer",
+    "salary": {
+        "max": 1000,
+        "min": 1000
+    },
+    "location": "Dhaka, Bangladesh"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-job-create-a-job-responses-be9f592a-217d-4097-93be-c790630e379f" data-toggle="tab">
+                                        
+                                            authentication error
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-job-create-a-job-responses-b0cd7222-b81e-438a-acec-937053b6c9f0" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-job-create-a-job-responses-be9f592a-217d-4097-93be-c790630e379f">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>401 Unauthorized</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>61</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"3d-j3p06dZF+1bn4fbLq7afvwhRxgk"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 08:44:59 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "Unauthenticated",
+    "statusCode": 401
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-job-create-a-job-responses-b0cd7222-b81e-438a-acec-937053b6c9f0">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>201 Created</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>387</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"183-JsR74zIhuCEh5Q4vOO96VwMaKXA"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 08:45:39 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 201,
+    "result": {
+        "title": "software engineer",
+        "description": "hiring a mern stack software engineer",
+        "location": "Dhaka, Bangladesh",
+        "salary": {
+            "min": 1000,
+            "max": 1000
+        },
+        "employerId": "678b693a374816780e3f3200",
+        "applicationCount": 0,
+        "isActive": false,
+        "_id": "678b6a33f4be6b344ee5f9ac",
+        "createdAt": "2025-01-18T08:45:39.108Z",
+        "updatedAt": "2025-01-18T08:45:39.108Z",
+        "__v": 0
+    },
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-job-update-a-job">
+                            update a job
+                            <a href="#request-job-update-a-job"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-job-update-a-job-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-job-update-a-job-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-job-update-a-job-example-curl">
+                                    <pre><code class="hljs curl">curl -X PUT -H "Authorization: Bearer {{access_token}}" -d '{
+    "title": "software engineer",
+    "description": "hiring a mern stack software engineer",
+    "salary": {
+        "max": 1000,
+        "min": 10
+    },
+    "location": "Dhaka, Bangladesh"
+}' "{{base_url}}/api/jobs/6788e16146e09fd33149c654"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-job-update-a-job-example-http">
+                                    <pre><code class="hljs http">PUT %7B%7Bbase_url%7D%7D/api/jobs/6788e16146e09fd33149c654 HTTP/1.1
+Host: 
+Authorization: Bearer {{access_token}}
+
+{
+    "title": "software engineer",
+    "description": "hiring a mern stack software engineer",
+    "salary": {
+        "max": 1000,
+        "min": 10
+    },
+    "location": "Dhaka, Bangladesh"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-job-update-a-job-responses-d7fdd9de-e98f-41b4-9674-21fcba05f71d" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-job-update-a-job-responses-e6b81d68-27ed-4e07-8725-c68e4985a6a4" data-toggle="tab">
+                                        
+                                            authentication error
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-job-update-a-job-responses-d7fdd9de-e98f-41b4-9674-21fcba05f71d">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>385</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"181-lJPS8MSPmyamZTJnH0mu15jeBBs"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 08:47:12 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "result": {
+        "salary": {
+            "max": 1000,
+            "min": 10
+        },
+        "_id": "678b6a33f4be6b344ee5f9ac",
+        "title": "software engineer",
+        "description": "hiring a mern stack software engineer",
+        "location": "Dhaka, Bangladesh",
+        "employerId": "678b693a374816780e3f3200",
+        "applicationCount": 0,
+        "isActive": false,
+        "createdAt": "2025-01-18T08:45:39.108Z",
+        "updatedAt": "2025-01-18T08:47:12.918Z",
+        "__v": 0
+    },
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-job-update-a-job-responses-e6b81d68-27ed-4e07-8725-c68e4985a6a4">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>401 Unauthorized</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>61</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"3d-j3p06dZF+1bn4fbLq7afvwhRxgk"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:26:58 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "Unauthenticated",
+    "statusCode": 401
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-job-toggle-job-application-taking">
+                            toggle job application taking
+                            <a href="#request-job-toggle-job-application-taking"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-job-toggle-job-application-taking-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-job-toggle-job-application-taking-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-job-toggle-job-application-taking-example-curl">
+                                    <pre><code class="hljs curl">curl -X PATCH -H "Authorization: Bearer {{access_token}}" -d '{
+    "isActive": true
+}' "{{base_url}}/api/jobs/6788e16146e09fd33149c654"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-job-toggle-job-application-taking-example-http">
+                                    <pre><code class="hljs http">PATCH %7B%7Bbase_url%7D%7D/api/jobs/6788e16146e09fd33149c654 HTTP/1.1
+Host: 
+Authorization: Bearer {{access_token}}
+
+{
+    "isActive": true
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-job-toggle-job-application-taking-responses-b27ffc2a-6962-4f25-a55b-4fc9067a3f2d" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-job-toggle-job-application-taking-responses-1722dc13-0311-460d-83d8-3c147fc2bd49" data-toggle="tab">
+                                        
+                                            authentication error
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-job-toggle-job-application-taking-responses-b27ffc2a-6962-4f25-a55b-4fc9067a3f2d">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>33</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"21-WUJWpVdPxtm4sU2C5pEMY40IhMU"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:04:25 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-job-toggle-job-application-taking-responses-1722dc13-0311-460d-83d8-3c147fc2bd49">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>401 Unauthorized</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>61</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"3d-j3p06dZF+1bn4fbLq7afvwhRxgk"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:27:22 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "Unauthenticated",
+    "statusCode": 401
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-job-delete-a-job">
+                            delete a job
+                            <a href="#request-job-delete-a-job"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-job-delete-a-job-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-job-delete-a-job-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-job-delete-a-job-example-curl">
+                                    <pre><code class="hljs curl">curl -X DELETE -H "Authorization: Bearer {{access_token}}" "{{base_url}}/api/jobs/678b817eb6d00864d0088e82"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-job-delete-a-job-example-http">
+                                    <pre><code class="hljs http">DELETE %7B%7Bbase_url%7D%7D/api/jobs/678b817eb6d00864d0088e82 HTTP/1.1
+Host: 
+Authorization: Bearer {{access_token}}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-job-delete-a-job-responses-d43c9d92-6c91-430a-b04f-fc2c2188f2d7" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-job-delete-a-job-responses-fc1f3020-8709-468f-b87d-d40022fa5efb" data-toggle="tab">
+                                        
+                                            authentication error
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-job-delete-a-job-responses-d43c9d92-6c91-430a-b04f-fc2c2188f2d7">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>33</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"21-WUJWpVdPxtm4sU2C5pEMY40IhMU"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:25:20 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-job-delete-a-job-responses-fc1f3020-8709-468f-b87d-d40022fa5efb">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>401 Unauthorized</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>61</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"3d-j3p06dZF+1bn4fbLq7afvwhRxgk"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:27:45 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "Unauthenticated",
+    "statusCode": 401
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-job-get-job-details">
+                            get job details
+                            <a href="#request-job-get-job-details"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-job-get-job-details-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-job-get-job-details-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-job-get-job-details-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Authorization: Bearer {{access_token}}" -d '{
+    "title": "software engineer",
+    "description": "hiring a mern stack software engineer",
+    "salary": {
+        "max": 1000,
+        "min": 1000
+    },
+    "location": "Dhaka, Bangladesh"
+}' "{{base_url}}/api/jobs"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-job-get-job-details-example-http">
+                                    <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/api/jobs HTTP/1.1
+Host: 
+Authorization: Bearer {{access_token}}
+
+{
+    "title": "software engineer",
+    "description": "hiring a mern stack software engineer",
+    "salary": {
+        "max": 1000,
+        "min": 1000
+    },
+    "location": "Dhaka, Bangladesh"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-job-get-job-details-responses-44ac534e-9729-4d2b-b416-39f2bc1d125d" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-job-get-job-details-responses-44ac534e-9729-4d2b-b416-39f2bc1d125d">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>385</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"181-lJPS8MSPmyamZTJnH0mu15jeBBs"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 09:10:10 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "result": {
+        "salary": {
+            "max": 1000,
+            "min": 10
+        },
+        "_id": "678b6a33f4be6b344ee5f9ac",
+        "title": "software engineer",
+        "description": "hiring a mern stack software engineer",
+        "location": "Dhaka, Bangladesh",
+        "employerId": "678b693a374816780e3f3200",
+        "applicationCount": 0,
+        "isActive": false,
+        "createdAt": "2025-01-18T08:45:39.108Z",
+        "updatedAt": "2025-01-18T08:47:12.918Z",
+        "__v": 0
+    },
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-job-search-jobs">
+                            search jobs
+                            <a href="#request-job-search-jobs"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-job-search-jobs-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-job-search-jobs-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-job-search-jobs-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Authorization: Bearer {{access_token}}" -d '{
+    "title":"Engineer",
+    "location": "dhaka"
+}' "{{base_url}}/api/jobs/search"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-job-search-jobs-example-http">
+                                    <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/api/jobs/search HTTP/1.1
+Host: 
+Authorization: Bearer {{access_token}}
+
+{
+    "title":"Engineer",
+    "location": "dhaka"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-job-search-jobs-responses-051b4362-68dc-4c1d-98f5-00d161872782" data-toggle="tab">
+                                        
+                                            search by title and location
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-job-search-jobs-responses-df458c72-1a11-4727-8c15-26e4b7c18312" data-toggle="tab">
+                                        
+                                            search by title, location and salary
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-job-search-jobs-responses-3b34b6e2-a050-4224-ba94-e6fc22b0cae4" data-toggle="tab">
+                                        
+                                            search by employer
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-job-search-jobs-responses-051b4362-68dc-4c1d-98f5-00d161872782">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>481</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"1e1-1xvE1s+IzbXk3SscqB0zmiD4A9w"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 09:10:31 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "result": {
+        "metadata": {
+            "totalCount": 1,
+            "totalPage": 1,
+            "pageNumber": 1,
+            "pageSize": 9007199254740991
+        },
+        "data": [
+            {
+                "_id": "678b6a33f4be6b344ee5f9ac",
+                "title": "software engineer",
+                "description": "hiring a mern stack software engineer",
+                "location": "Dhaka, Bangladesh",
+                "salary": {
+                    "max": 1000,
+                    "min": 10
+                },
+                "employerId": "678b693a374816780e3f3200",
+                "applicationCount": 0,
+                "isActive": false,
+                "createdAt": "2025-01-18T08:45:39.108Z",
+                "updatedAt": "2025-01-18T08:47:12.918Z",
+                "__v": 0
+            }
+        ]
+    },
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-job-search-jobs-responses-df458c72-1a11-4727-8c15-26e4b7c18312">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>481</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"1e1-1xvE1s+IzbXk3SscqB0zmiD4A9w"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 09:11:21 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "result": {
+        "metadata": {
+            "totalCount": 1,
+            "totalPage": 1,
+            "pageNumber": 1,
+            "pageSize": 9007199254740991
+        },
+        "data": [
+            {
+                "_id": "678b6a33f4be6b344ee5f9ac",
+                "title": "software engineer",
+                "description": "hiring a mern stack software engineer",
+                "location": "Dhaka, Bangladesh",
+                "salary": {
+                    "max": 1000,
+                    "min": 10
+                },
+                "employerId": "678b693a374816780e3f3200",
+                "applicationCount": 0,
+                "isActive": false,
+                "createdAt": "2025-01-18T08:45:39.108Z",
+                "updatedAt": "2025-01-18T08:47:12.918Z",
+                "__v": 0
+            }
+        ]
+    },
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-job-search-jobs-responses-3b34b6e2-a050-4224-ba94-e6fc22b0cae4">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>481</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"1e1-1xvE1s+IzbXk3SscqB0zmiD4A9w"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 09:12:45 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "result": {
+        "metadata": {
+            "totalCount": 1,
+            "totalPage": 1,
+            "pageNumber": 1,
+            "pageSize": 9007199254740991
+        },
+        "data": [
+            {
+                "_id": "678b6a33f4be6b344ee5f9ac",
+                "title": "software engineer",
+                "description": "hiring a mern stack software engineer",
+                "location": "Dhaka, Bangladesh",
+                "salary": {
+                    "max": 1000,
+                    "min": 10
+                },
+                "employerId": "678b693a374816780e3f3200",
+                "applicationCount": 0,
+                "isActive": false,
+                "createdAt": "2025-01-18T08:45:39.108Z",
+                "updatedAt": "2025-01-18T08:47:12.918Z",
+                "__v": 0
+            }
+        ]
+    },
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-application">
+                        application
+                        <a href="#folder-application"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-application-apply-for-a-job">
+                            apply for a job
+                            <a href="#request-application-apply-for-a-job"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-application-apply-for-a-job-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-application-apply-for-a-job-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-application-apply-for-a-job-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "name":"sabit",
+    "email":"sabit@gmail.com",
+    "cvUrl": "https://democv.com/sabit"
+}' "{{base_url}}/api/jobs/6788e6804d33ff7c83c64407/applications"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-application-apply-for-a-job-example-http">
+                                    <pre><code class="hljs http">POST %7B%7Bbase_url%7D%7D/api/jobs/6788e6804d33ff7c83c64407/applications HTTP/1.1
+Host: 
+
+{
+    "name":"sabit",
+    "email":"sabit@gmail.com",
+    "cvUrl": "https://democv.com/sabit"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-application-apply-for-a-job-responses-8945c26b-f2cb-49c6-9742-8666d3670cd7" data-toggle="tab">
+                                        
+                                            deactivated job
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-application-apply-for-a-job-responses-3cc079e2-678f-4c1c-9aee-166502398121" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-application-apply-for-a-job-responses-8945c26b-f2cb-49c6-9742-8666d3670cd7">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>422 Unprocessable Entity</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>87</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"57-q+FJlsDSG00Jb1v8v5ZfFWczEu4"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 09:16:39 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "This job is no longer taking applications",
+    "statusCode": 422
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-application-apply-for-a-job-responses-3cc079e2-678f-4c1c-9aee-166502398121">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>33</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"21-WUJWpVdPxtm4sU2C5pEMY40IhMU"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:18:53 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-application-get-application-list-of-a-job">
+                            get application list of a job
+                            <a href="#request-application-get-application-list-of-a-job"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-application-get-application-list-of-a-job-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-application-get-application-list-of-a-job-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-application-get-application-list-of-a-job-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Authorization: Bearer {{access_token}}" "{{base_url}}/api/jobs/6788e6804d33ff7c83c64407/applications"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-application-get-application-list-of-a-job-example-http">
+                                    <pre><code class="hljs http">GET %7B%7Bbase_url%7D%7D/api/jobs/6788e6804d33ff7c83c64407/applications HTTP/1.1
+Host: 
+Authorization: Bearer {{access_token}}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-application-get-application-list-of-a-job-responses-0ec3fe0d-08de-4807-a1c8-7a2892254e82" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-application-get-application-list-of-a-job-responses-97d6875c-cb91-4996-b3bf-e370688a9622" data-toggle="tab">
+                                        
+                                            authentication error
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-application-get-application-list-of-a-job-responses-ac4141f9-9db2-4500-8212-7c9fd8972702" data-toggle="tab">
+                                        
+                                            job that a employer doesn't own
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-application-get-application-list-of-a-job-responses-0ec3fe0d-08de-4807-a1c8-7a2892254e82">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>412</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"19c-W0w+T9M4MDZwRVD28BvVlP4ODjE"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:19:32 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "result": {
+        "metadata": {
+            "totalCount": 1,
+            "totalPage": 1,
+            "pageNumber": 1,
+            "pageSize": 9007199254740991
+        },
+        "data": [
+            {
+                "_id": "678b800dcb930b598bf0b51d",
+                "name": "sabit",
+                "email": "sabit54@gmail.com",
+                "cvUrl": "https://democv.com/sabit",
+                "jobId": "678b7ffdb6d00864d0088e7e",
+                "employerId": "678b7f9192a42b599bfe04ca",
+                "createdAt": "2025-01-18T10:18:53.889Z",
+                "updatedAt": "2025-01-18T10:18:53.889Z",
+                "__v": 0
+            }
+        ]
+    },
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-application-get-application-list-of-a-job-responses-97d6875c-cb91-4996-b3bf-e370688a9622">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>401 Unauthorized</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>61</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"3d-j3p06dZF+1bn4fbLq7afvwhRxgk"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:21:15 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "Unauthenticated",
+    "statusCode": 401
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-application-get-application-list-of-a-job-responses-ac4141f9-9db2-4500-8212-7c9fd8972702">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>403 Forbidden</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>107</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"6b-7mSv+uU9gTAS+g3NoOzhJynARNQ"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:22:58 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "You are not allowed to check the application list of this job",
+    "statusCode": 403
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-application-get-single-application-details">
+                            get single application details
+                            <a href="#request-application-get-single-application-details"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-application-get-single-application-details-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-application-get-single-application-details-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-application-get-single-application-details-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Authorization: Bearer {{access_token}}" "{{base_url}}/api/jobs/6788e6804d33ff7c83c64407/applications"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-application-get-single-application-details-example-http">
+                                    <pre><code class="hljs http">GET %7B%7Bbase_url%7D%7D/api/jobs/6788e6804d33ff7c83c64407/applications HTTP/1.1
+Host: 
+Authorization: Bearer {{access_token}}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-application-get-single-application-details-responses-78a32c87-bc35-45d5-8c03-4bee97228a45" data-toggle="tab">
+                                        
+                                            success
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-application-get-single-application-details-responses-5a34a229-01da-46c5-ae75-2ce047fdeaf7" data-toggle="tab">
+                                        
+                                            authentication error
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-application-get-single-application-details-responses-f5f4f495-1514-4a3e-b02c-b113666eb2c0" data-toggle="tab">
+                                        
+                                            job that a employer doesn't own
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-application-get-single-application-details-responses-78a32c87-bc35-45d5-8c03-4bee97228a45">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>316</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"13c-0IIWD05Yy1/CxOgkRBmfhhlrOFY"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:20:31 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "statusCode": 200,
+    "result": {
+        "_id": "678b800dcb930b598bf0b51d",
+        "name": "sabit",
+        "email": "sabit54@gmail.com",
+        "cvUrl": "https://democv.com/sabit",
+        "jobId": "678b7ffdb6d00864d0088e7e",
+        "employerId": "678b7f9192a42b599bfe04ca",
+        "createdAt": "2025-01-18T10:18:53.889Z",
+        "updatedAt": "2025-01-18T10:18:53.889Z",
+        "__v": 0
+    },
+    "message": "OK"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-application-get-single-application-details-responses-5a34a229-01da-46c5-ae75-2ce047fdeaf7">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>401 Unauthorized</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>61</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"3d-j3p06dZF+1bn4fbLq7afvwhRxgk"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:21:36 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "Unauthenticated",
+    "statusCode": 401
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-application-get-single-application-details-responses-f5f4f495-1514-4a3e-b02c-b113666eb2c0">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>403 Forbidden</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>91</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">ETag</th><td>W/"5b-RQ8nicRWhbRqc1fCWxeCDcjkbmI"</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 18 Jan 2025 10:23:32 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "type": "ERROR",
+    "message": "You are not allowed to check this application",
+    "statusCode": 403
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("table:not(.table)").addClass('table table-bordered');
+    });
+</script>
+</body>
+</html>

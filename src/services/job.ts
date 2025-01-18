@@ -32,7 +32,11 @@ export const deleteJob = async ({ employerId, jobId }: { employerId: string, job
 };
 
 export const getJobDetails = async (props: { jobId: string }) => {
-  return await JobModel.findById(props.jobId)
+  const job = await JobModel.findById(props.jobId)
+  if (!job) {
+    throw new HttpError({ statusCode: 404, message: "Job not found" })
+  }
+  return job
 }
 
 export const searchJobs = async (props: { title?: string, location?: string, employerId?: string, maxSalary?: number, minSalary?: number, pageNumber: number, pageSize: number }) => {
@@ -63,7 +67,7 @@ export const searchJobs = async (props: { title?: string, location?: string, emp
 
 export const toggleJobActivation = async (props: { jobId: string, employerId: string, isActive: boolean }) => {
   const update = await JobModel.updateOne({ _id: props.jobId, employerId: props.employerId }, { isActive: props.isActive })
-  if (update.matchedCount) {
+  if (!update.matchedCount) {
     throw new HttpError({ statusCode: 404, message: "Job was not found" })
   }
 }

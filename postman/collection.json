@@ -1,0 +1,2107 @@
+{
+	"info": {
+		"_postman_id": "0a8f2da9-ab67-404e-9a74-af93c427ce7d",
+		"name": "job-market",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19267000"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"sabit@gmail.com\",\n    \"password\": \"Pass1234@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"sabit@gmail.com\",\n    \"password\": \"Pass1234@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "469"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d5-Zzl3LjpCl0ahb7dAZBuhWVEwPUA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Jan 2025 09:33:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"RESULT\",\n    \"error\": null,\n    \"statusCode\": 200,\n    \"result\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ODhkMWM3ZTI4NzNhYjJhMjhjMjIwNiIsImVtYWlsIjoic2FiaXRAZ21haWwuY29tIiwiaWF0IjoxNzM3MDIwMDE3LCJleHAiOjE3MzcwNDE2MTd9.D5gDG-dmKLMHwdWM5Ss9xPSUh-rBDokXDdcoHW9Ae3I\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ODhkMWM3ZTI4NzNhYjJhMjhjMjIwNiIsImlhdCI6MTczNzAyMDAxNywiZXhwIjoxNzM3ODg0MDE3fQ.ejneCjuMAKnucW9TATOoEYOwEwXHRgITONTsFFhJF18\"\n    }\n}"
+						},
+						{
+							"name": "failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"sabi2t@gmail.com\",\n    \"password\": \"Pass1234@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "76"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4c-1NKaj4s/AttJtj30Pydc2mOtT7I\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 08:43:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"Incorrect username or password\",\n    \"statusCode\": 404\n}"
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"sabit\",\n    \"email\":\"sabit@gmail.com\",\n    \"password\":\"Pass1234@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "strong pass error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"sabit\",\n    \"email\":\"sabit@gmail.com\",\n    \"password\":\"Pass1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "158"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9e-Bg7RSMecXbH65xoUn4p/pD14TUg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 08:40:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"sabit\",\n    \"email\":\"sabit@gmail.com\",\n    \"password\":\"Pass1234@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-WUJWpVdPxtm4sU2C5pEMY40IhMU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 08:41:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"OK\"\n}"
+						},
+						{
+							"name": "email conflict error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"sabit\",\n    \"email\":\"sabit@gmail.com\",\n    \"password\":\"Pass1234@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-eQhf2XG7V5HAa9pBwGY/noiru0c\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 08:42:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"This email is already registered.\",\n    \"statusCode\": 409\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "job",
+			"item": [
+				{
+					"name": "create a job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"software engineer\",\n    \"description\": \"hiring a mern stack software engineer\",\n    \"salary\": {\n        \"max\": 1000,\n        \"min\": 1000\n    },\n    \"location\": \"Dhaka, Bangladesh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/jobs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "authentication error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"software engineer\",\n    \"description\": \"hiring a mern stack software engineer\",\n    \"salary\": {\n        \"max\": 1000,\n        \"min\": 1000\n    },\n    \"location\": \"Dhaka, Bangladesh\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-j3p06dZF+1bn4fbLq7afvwhRxgk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 08:44:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"Unauthenticated\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"software engineer\",\n    \"description\": \"hiring a mern stack software engineer\",\n    \"salary\": {\n        \"max\": 1000,\n        \"min\": 1000\n    },\n    \"location\": \"Dhaka, Bangladesh\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "387"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"183-JsR74zIhuCEh5Q4vOO96VwMaKXA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 08:45:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"result\": {\n        \"title\": \"software engineer\",\n        \"description\": \"hiring a mern stack software engineer\",\n        \"location\": \"Dhaka, Bangladesh\",\n        \"salary\": {\n            \"min\": 1000,\n            \"max\": 1000\n        },\n        \"employerId\": \"678b693a374816780e3f3200\",\n        \"applicationCount\": 0,\n        \"isActive\": false,\n        \"_id\": \"678b6a33f4be6b344ee5f9ac\",\n        \"createdAt\": \"2025-01-18T08:45:39.108Z\",\n        \"updatedAt\": \"2025-01-18T08:45:39.108Z\",\n        \"__v\": 0\n    },\n    \"message\": \"OK\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update a job",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"software engineer\",\n    \"description\": \"hiring a mern stack software engineer\",\n    \"salary\": {\n        \"max\": 1000,\n        \"min\": 10\n    },\n    \"location\": \"Dhaka, Bangladesh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/jobs/6788e16146e09fd33149c654",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"6788e16146e09fd33149c654"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"software engineer\",\n    \"description\": \"hiring a mern stack software engineer\",\n    \"salary\": {\n        \"max\": 1000,\n        \"min\": 10\n    },\n    \"location\": \"Dhaka, Bangladesh\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b6a33f4be6b344ee5f9ac",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b6a33f4be6b344ee5f9ac"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "385"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"181-lJPS8MSPmyamZTJnH0mu15jeBBs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 08:47:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"result\": {\n        \"salary\": {\n            \"max\": 1000,\n            \"min\": 10\n        },\n        \"_id\": \"678b6a33f4be6b344ee5f9ac\",\n        \"title\": \"software engineer\",\n        \"description\": \"hiring a mern stack software engineer\",\n        \"location\": \"Dhaka, Bangladesh\",\n        \"employerId\": \"678b693a374816780e3f3200\",\n        \"applicationCount\": 0,\n        \"isActive\": false,\n        \"createdAt\": \"2025-01-18T08:45:39.108Z\",\n        \"updatedAt\": \"2025-01-18T08:47:12.918Z\",\n        \"__v\": 0\n    },\n    \"message\": \"OK\"\n}"
+						},
+						{
+							"name": "authentication error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"software engineer\",\n    \"description\": \"hiring a mern stack software engineer\",\n    \"salary\": {\n        \"max\": 1000,\n        \"min\": 10\n    },\n    \"location\": \"Dhaka, Bangladesh\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b6a33f4be6b344ee5f9ac",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b6a33f4be6b344ee5f9ac"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-j3p06dZF+1bn4fbLq7afvwhRxgk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:26:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"Unauthenticated\",\n    \"statusCode\": 401\n}"
+						}
+					]
+				},
+				{
+					"name": "toggle job application taking",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isActive\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/jobs/6788e16146e09fd33149c654",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"6788e16146e09fd33149c654"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"isActive\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/6788e16146e09fd33149c654",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"6788e16146e09fd33149c654"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-WUJWpVdPxtm4sU2C5pEMY40IhMU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:04:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"OK\"\n}"
+						},
+						{
+							"name": "authentication error",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b7d613f8e61cf41033975",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b7d613f8e61cf41033975"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-j3p06dZF+1bn4fbLq7afvwhRxgk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:27:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"Unauthenticated\",\n    \"statusCode\": 401\n}"
+						}
+					]
+				},
+				{
+					"name": "delete a job",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/jobs/678b817eb6d00864d0088e82",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"678b817eb6d00864d0088e82"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b817eb6d00864d0088e82",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b817eb6d00864d0088e82"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-WUJWpVdPxtm4sU2C5pEMY40IhMU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:25:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"OK\"\n}"
+						},
+						{
+							"name": "authentication error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b817eb6d00864d0088e82",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b817eb6d00864d0088e82"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-j3p06dZF+1bn4fbLq7afvwhRxgk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:27:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"Unauthenticated\",\n    \"statusCode\": 401\n}"
+						}
+					]
+				},
+				{
+					"name": "get job details",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"software engineer\",\n    \"description\": \"hiring a mern stack software engineer\",\n    \"salary\": {\n        \"max\": 1000,\n        \"min\": 1000\n    },\n    \"location\": \"Dhaka, Bangladesh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/jobs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"software engineer\",\n    \"description\": \"hiring a mern stack software engineer\",\n    \"salary\": {\n        \"max\": 1000,\n        \"min\": 1000\n    },\n    \"location\": \"Dhaka, Bangladesh\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b6a33f4be6b344ee5f9ac",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b6a33f4be6b344ee5f9ac"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "385"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"181-lJPS8MSPmyamZTJnH0mu15jeBBs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 09:10:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"result\": {\n        \"salary\": {\n            \"max\": 1000,\n            \"min\": 10\n        },\n        \"_id\": \"678b6a33f4be6b344ee5f9ac\",\n        \"title\": \"software engineer\",\n        \"description\": \"hiring a mern stack software engineer\",\n        \"location\": \"Dhaka, Bangladesh\",\n        \"employerId\": \"678b693a374816780e3f3200\",\n        \"applicationCount\": 0,\n        \"isActive\": false,\n        \"createdAt\": \"2025-01-18T08:45:39.108Z\",\n        \"updatedAt\": \"2025-01-18T08:47:12.918Z\",\n        \"__v\": 0\n    },\n    \"message\": \"OK\"\n}"
+						}
+					]
+				},
+				{
+					"name": "search jobs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"Engineer\",\n    \"location\": \"dhaka\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/jobs/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"search"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "search by title and location",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\":\"Engineer\",\n    \"location\": \"dhaka\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/search",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"search"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "481"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e1-1xvE1s+IzbXk3SscqB0zmiD4A9w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 09:10:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"result\": {\n        \"metadata\": {\n            \"totalCount\": 1,\n            \"totalPage\": 1,\n            \"pageNumber\": 1,\n            \"pageSize\": 9007199254740991\n        },\n        \"data\": [\n            {\n                \"_id\": \"678b6a33f4be6b344ee5f9ac\",\n                \"title\": \"software engineer\",\n                \"description\": \"hiring a mern stack software engineer\",\n                \"location\": \"Dhaka, Bangladesh\",\n                \"salary\": {\n                    \"max\": 1000,\n                    \"min\": 10\n                },\n                \"employerId\": \"678b693a374816780e3f3200\",\n                \"applicationCount\": 0,\n                \"isActive\": false,\n                \"createdAt\": \"2025-01-18T08:45:39.108Z\",\n                \"updatedAt\": \"2025-01-18T08:47:12.918Z\",\n                \"__v\": 0\n            }\n        ]\n    },\n    \"message\": \"OK\"\n}"
+						},
+						{
+							"name": "search by title, location and salary",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\":\"Engineer\",\n    \"location\": \"dhaka\",\n    \"maxSalary\": 1000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/search",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"search"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "481"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e1-1xvE1s+IzbXk3SscqB0zmiD4A9w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 09:11:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"result\": {\n        \"metadata\": {\n            \"totalCount\": 1,\n            \"totalPage\": 1,\n            \"pageNumber\": 1,\n            \"pageSize\": 9007199254740991\n        },\n        \"data\": [\n            {\n                \"_id\": \"678b6a33f4be6b344ee5f9ac\",\n                \"title\": \"software engineer\",\n                \"description\": \"hiring a mern stack software engineer\",\n                \"location\": \"Dhaka, Bangladesh\",\n                \"salary\": {\n                    \"max\": 1000,\n                    \"min\": 10\n                },\n                \"employerId\": \"678b693a374816780e3f3200\",\n                \"applicationCount\": 0,\n                \"isActive\": false,\n                \"createdAt\": \"2025-01-18T08:45:39.108Z\",\n                \"updatedAt\": \"2025-01-18T08:47:12.918Z\",\n                \"__v\": 0\n            }\n        ]\n    },\n    \"message\": \"OK\"\n}"
+						},
+						{
+							"name": "search by employer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"employerId\": \"678b693a374816780e3f3200\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/search",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"search"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "481"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e1-1xvE1s+IzbXk3SscqB0zmiD4A9w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 09:12:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"result\": {\n        \"metadata\": {\n            \"totalCount\": 1,\n            \"totalPage\": 1,\n            \"pageNumber\": 1,\n            \"pageSize\": 9007199254740991\n        },\n        \"data\": [\n            {\n                \"_id\": \"678b6a33f4be6b344ee5f9ac\",\n                \"title\": \"software engineer\",\n                \"description\": \"hiring a mern stack software engineer\",\n                \"location\": \"Dhaka, Bangladesh\",\n                \"salary\": {\n                    \"max\": 1000,\n                    \"min\": 10\n                },\n                \"employerId\": \"678b693a374816780e3f3200\",\n                \"applicationCount\": 0,\n                \"isActive\": false,\n                \"createdAt\": \"2025-01-18T08:45:39.108Z\",\n                \"updatedAt\": \"2025-01-18T08:47:12.918Z\",\n                \"__v\": 0\n            }\n        ]\n    },\n    \"message\": \"OK\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "application",
+			"item": [
+				{
+					"name": "apply for a job",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"sabit\",\n    \"email\":\"sabit@gmail.com\",\n    \"cvUrl\": \"https://democv.com/sabit\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/jobs/6788e6804d33ff7c83c64407/applications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"6788e6804d33ff7c83c64407",
+								"applications"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deactivated job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"sabit\",\n    \"email\":\"sabit54@gmail.com\",\n    \"cvUrl\": \"https://democv.com/sabit\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b6a33f4be6b344ee5f9ac/applications",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b6a33f4be6b344ee5f9ac",
+										"applications"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-q+FJlsDSG00Jb1v8v5ZfFWczEu4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 09:16:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"This job is no longer taking applications\",\n    \"statusCode\": 422\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"sabit\",\n    \"email\":\"sabit54@gmail.com\",\n    \"cvUrl\": \"https://democv.com/sabit\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b7ffdb6d00864d0088e7e/applications",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b7ffdb6d00864d0088e7e",
+										"applications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-WUJWpVdPxtm4sU2C5pEMY40IhMU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:18:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"OK\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get application list of a job",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/jobs/6788e6804d33ff7c83c64407/applications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"6788e6804d33ff7c83c64407",
+								"applications"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b7ffdb6d00864d0088e7e/applications",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b7ffdb6d00864d0088e7e",
+										"applications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "412"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19c-W0w+T9M4MDZwRVD28BvVlP4ODjE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:19:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"result\": {\n        \"metadata\": {\n            \"totalCount\": 1,\n            \"totalPage\": 1,\n            \"pageNumber\": 1,\n            \"pageSize\": 9007199254740991\n        },\n        \"data\": [\n            {\n                \"_id\": \"678b800dcb930b598bf0b51d\",\n                \"name\": \"sabit\",\n                \"email\": \"sabit54@gmail.com\",\n                \"cvUrl\": \"https://democv.com/sabit\",\n                \"jobId\": \"678b7ffdb6d00864d0088e7e\",\n                \"employerId\": \"678b7f9192a42b599bfe04ca\",\n                \"createdAt\": \"2025-01-18T10:18:53.889Z\",\n                \"updatedAt\": \"2025-01-18T10:18:53.889Z\",\n                \"__v\": 0\n            }\n        ]\n    },\n    \"message\": \"OK\"\n}"
+						},
+						{
+							"name": "authentication error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b7ffdb6d00864d0088e7e/applications",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b7ffdb6d00864d0088e7e",
+										"applications"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-j3p06dZF+1bn4fbLq7afvwhRxgk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:21:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"Unauthenticated\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "job that a employer doesn't own",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b7ffdb6d00864d0088e7e/applications",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b7ffdb6d00864d0088e7e",
+										"applications"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6b-7mSv+uU9gTAS+g3NoOzhJynARNQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:22:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"You are not allowed to check the application list of this job\",\n    \"statusCode\": 403\n}"
+						}
+					]
+				},
+				{
+					"name": "get single application details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/jobs/6788e6804d33ff7c83c64407/applications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"6788e6804d33ff7c83c64407",
+								"applications"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b7ffdb6d00864d0088e7e/applications/678b800dcb930b598bf0b51d",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b7ffdb6d00864d0088e7e",
+										"applications",
+										"678b800dcb930b598bf0b51d"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "316"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13c-0IIWD05Yy1/CxOgkRBmfhhlrOFY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:20:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"result\": {\n        \"_id\": \"678b800dcb930b598bf0b51d\",\n        \"name\": \"sabit\",\n        \"email\": \"sabit54@gmail.com\",\n        \"cvUrl\": \"https://democv.com/sabit\",\n        \"jobId\": \"678b7ffdb6d00864d0088e7e\",\n        \"employerId\": \"678b7f9192a42b599bfe04ca\",\n        \"createdAt\": \"2025-01-18T10:18:53.889Z\",\n        \"updatedAt\": \"2025-01-18T10:18:53.889Z\",\n        \"__v\": 0\n    },\n    \"message\": \"OK\"\n}"
+						},
+						{
+							"name": "authentication error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b7ffdb6d00864d0088e7e/applications/678b800dcb930b598bf0b51d",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b7ffdb6d00864d0088e7e",
+										"applications",
+										"678b800dcb930b598bf0b51d"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-j3p06dZF+1bn4fbLq7afvwhRxgk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:21:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"Unauthenticated\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "job that a employer doesn't own",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/jobs/678b7ffdb6d00864d0088e7e/applications/678b800dcb930b598bf0b51d",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"678b7ffdb6d00864d0088e7e",
+										"applications",
+										"678b800dcb930b598bf0b51d"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b-RQ8nicRWhbRqc1fCWxeCDcjkbmI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 18 Jan 2025 10:23:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ERROR\",\n    \"message\": \"You are not allowed to check this application\",\n    \"statusCode\": 403\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

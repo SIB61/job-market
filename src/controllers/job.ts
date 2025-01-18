@@ -1,8 +1,10 @@
 import { createJob, deleteJob, getJobDetails, searchJobs, toggleJobActivation, updateJob } from "@/services/job";
 import { controller } from "@/utils/controller";
+import { HttpError } from "@/utils/http-error";
 import { HttpResponse } from "@/utils/http-response";
-import { validateJobActivationRequest, validateJobCreateRequest, validateJobSearchRequest, validateJobUpdateRequest } from "@/validators/job";
+import { validateDeleteJobRequest, validateGetJobDetailsRequest, validateJobActivationRequest, validateJobCreateRequest, validateJobSearchRequest, validateJobUpdateRequest } from "@/validators/job";
 import { Request, Response } from "express";
+import { isValidObjectId } from "mongoose";
 
 export const handleCreateJob = controller(async (req: Request, res: Response) => {
   validateJobCreateRequest(req)
@@ -22,13 +24,18 @@ export const handleUpdateJob = controller(async (req: Request) => {
 });
 
 export const handleDeleteJob = controller(async (req: Request) => {
+  validateDeleteJobRequest(req)
   const { id: employerId } = req.user!;
   const { jobId } = req.params as { jobId: string };
   await deleteJob({ employerId, jobId })
 });
 
 export const handleGetJobDetails = controller(async (req: Request) => {
+  validateGetJobDetailsRequest(req)
   const jobId = req.params.jobId as string
+  if (!isValidObjectId(jobId)) {
+    throw new HttpError({ statusCode: 400, message: "Invalid id" })
+  }
   return getJobDetails({ jobId })
 })
 

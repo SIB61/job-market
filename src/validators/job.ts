@@ -1,4 +1,5 @@
 import requestValidator from "@/utils/request-validator";
+import { zObjectId } from "@/utils/validator";
 import { z } from "zod";
 
 export const validateJobCreateRequest = requestValidator({
@@ -25,6 +26,7 @@ export const validateJobUpdateRequest = requestValidator({
         }),
         location: z.string()
     }),
+    params: z.object({ jobId: zObjectId })
 })
 
 export const validateJobSearchRequest = requestValidator({
@@ -34,7 +36,14 @@ export const validateJobSearchRequest = requestValidator({
         title: z.string().optional(),
         location: z.string().optional(),
         pageNumber: z.number().positive().default(1),
-        pageSize: z.number().positive().default(Number.MAX_SAFE_INTEGER)
+        pageSize: z.number().positive().default(Number.MAX_SAFE_INTEGER),
+        employerId: zObjectId.optional()
+    })
+})
+
+export const validateGetJobDetailsRequest = requestValidator({
+    params: z.object({
+        jobId: zObjectId
     })
 })
 
@@ -42,4 +51,9 @@ export const validateJobActivationRequest = requestValidator({
     body: z.object({
         isActive: z.boolean()
     }),
+    params: z.object({
+        jobId: zObjectId
+    })
 })
+
+export const validateDeleteJobRequest = requestValidator({ params: z.object({ jobId: zObjectId }) })

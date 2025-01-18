@@ -2,6 +2,7 @@ import {
   handleCreateJob,
   handleDeleteJob,
   handleGetJobDetails,
+  handleJobApplicationDeactivation,
   handleJobSearch,
   handleUpdateJob,
 } from "@/controllers/job";
@@ -23,6 +24,8 @@ jobRouter.delete(
 );
 
 jobRouter.post("/search", handleJobSearch)
+
+jobRouter.patch("/:jobId", authGuard(), handleJobApplicationDeactivation)
 
 export default jobRouter;
 

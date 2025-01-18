@@ -17,7 +17,7 @@ sudo docker compose build && sudo docker compose up -d
 sudo docker compose logs -f app
 ```
 
-### stop the app:
+### stop the app
 
 ```bash
 sudo docker compose down

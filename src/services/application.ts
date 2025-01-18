@@ -9,7 +9,7 @@ export const createApplication = async (props: {
   jobId: string;
   application: Application;
 }) => {
-  const job = await JobModel.findById(props.jobId).select("_id employerId");
+  const job = await JobModel.findById(props.jobId).select("_id employerId isActive");
   if (!job) {
     throw new HttpError({ statusCode: 400, message: "The job was not found" });
   }
